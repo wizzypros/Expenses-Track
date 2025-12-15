@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Track</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="container">
+        <h1>Expense Track</h1>
+        <p>Split expenses easily like Splitwise — with INR</p>
+      </div>
+    </header>
+    <main class="container">
+      <section class="card">
+        <h2>Groups</h2>
+        <div class="group-controls">
+          <form id="group-form" class="grid grid-members">
+            <input id="group-name" type="text" placeholder="New group name" />
+            <button type="submit" class="btn primary">Add Group</button>
+          </form>
+          <div class="group-switch">
+            <label for="group-select">Select Group</label>
+            <div class="group-switch-row">
+              <select id="group-select"></select>
+              <button type="button" id="group-delete" class="btn danger">Delete Group</button>
+              <button type="button" id="group-close" class="btn success">Close Group</button>
+            </div>
+            <div id="group-status" class="status-banner"></div>
+          </div>
+        </div>
+      </section>
+      <section class="card">
+        <h2>Members</h2>
+        <form id="member-form" class="grid grid-members">
+          <input id="member-name" type="text" placeholder="Enter member name" required />
+          <button type="submit" class="btn primary">Add Member</button>
+        </form>
+        <ul id="member-list" class="chip-list"></ul>
+      </section>
+
+      <section class="card">
+        <h2>Add Expense</h2>
+        <form id="expense-form" class="grid grid-expense">
+          <input id="expense-title" type="text" placeholder="Expense description (e.g., Dinner)" required />
+          <input id="expense-category" type="text" placeholder="Category (e.g., Food, Travel)" />
+          <div class="field">
+            <label for="expense-amount">Amount (₹)</label>
+            <input id="expense-amount" type="number" min="0" step="0.01" required />
+          </div>
+          <div class="field">
+            <label for="expense-payer">Paid By</label>
+            <select id="expense-payer" required></select>
+          </div>
+          <fieldset class="field split-type">
+            <legend>Split Type</legend>
+            <label><input type="radio" name="split-type" value="equal" checked /> Equal</label>
+            <label><input type="radio" name="split-type" value="percentage" /> Percentage</label>
+            <label><input type="radio" name="split-type" value="shares" /> Shares</label>
+          </fieldset>
+
+          <div class="field">
+            <label>Include Members</label>
+            <div class="include-controls">
+              <button type="button" id="include-all" class="btn ghost">Select All</button>
+              <button type="button" id="include-clear" class="btn ghost">Clear</button>
+            </div>
+            <div id="include-members" class="include-members"></div>
+          </div>
+
+          <div id="percentage-inputs" class="field hidden">
+            <label>Percentages (must total 100%)</label>
+            <div id="percentage-list" class="percentage-list"></div>
+            <div id="percentage-total" class="muted"></div>
+          </div>
+          <div id="shares-inputs" class="field hidden">
+            <label>Shares per member</label>
+            <div id="shares-list" class="shares-list"></div>
+            <div id="shares-total" class="muted"></div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" id="submit-expense" class="btn success">Add Expense</button>
+            <button type="button" id="cancel-edit" class="btn ghost hidden">Cancel Edit</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Expenses</h2>
+        <div id="expense-empty" class="muted">No expenses yet</div>
+        <ul id="expense-list" class="expense-list"></ul>
+      </section>
+
+      <section class="card">
+        <h2>Balances</h2>
+        <ul id="balance-list" class="balance-list"></ul>
+      </section>
+      <section class="card">
+        <h2>Settlements</h2>
+        <ul id="settlement-list" class="settlement-list"></ul>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <div class="container">
+        <span>Made for tracking shared expenses</span>
+      </div>
+    </footer>
+
+    <script src="assets/app.js"></script>
+  </body>
+  </html>
+
